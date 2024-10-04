@@ -4,7 +4,8 @@ class BubblesController < ApplicationController
   before_action :set_bubble, only: %i[ show edit update ]
 
   def index
-    @bubbles = @bucket.bubbles.not_popped
+    @bubbles = @bucket.bubbles
+    @bubbles = params.include?(:popped) ? @bubbles.popped : @bubbles.not_popped
 
     if params[:term].present?
       @bubbles = @bubbles.mentioning(params[:term])

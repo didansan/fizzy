@@ -1,17 +1,21 @@
 <h1 class="txt-large">
   <div class="filter" data-controller="dialog" data-action="keydown.esc->dialog#close">
     <button class="btn btn--plain filter__button" data-action="click->dialog#toggle" data-dialog-modal-value="true">
-      Most active
+      <% if params[:popped] %>
+        Popped
+      <% else %>
+        Most active
+      <% end %>
     </button>
 
     <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
       <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
-        <li><a href="#" class="filter__button">Most active</a></li>
+        <li><%= link_to "Most active", bucket_bubbles_path(bucket, bubble_filter_params.without(:popped)), class: "filter__button" %></li>
         <li><a href="#" class="filter__button">Most discussed</a></li>
         <li><a href="#" class="filter__button">Most boosted</a></li>
         <li><a href="#" class="filter__button">Newest</a></li>
         <li><a href="#" class="filter__button">Oldest</a></li>
-        <li><a href="#" class="filter__button">Popped</a></li>
+        <li><%= link_to "Popped", bucket_bubbles_path(bucket, bubble_filter_params.merge(popped: true)), class: "filter__button" %></li>
       </menu>
     </dialog>
   </div>

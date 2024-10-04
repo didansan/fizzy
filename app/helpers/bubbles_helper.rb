@@ -22,6 +22,6 @@ module BubblesHelper
   end
 
   def bubble_filter_params
-    params.permit(:term, :tag_id, :assignee_id)
+    params.permit(:popped, :term, :tag_id, :assignee_id)
   end
 end
