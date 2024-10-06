@@ -9,7 +9,7 @@
     </button>
 
     <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
-      <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+      <menu class="filter__menu flex flex-column gap-half unpad margin-none">
         <li><%= link_to "Most active", bucket_bubbles_path(bucket, bubble_filter_params.without(:popped)), class: "filter__button" %></li>
         <li><a href="#" class="filter__button">Most discussed</a></li>
         <li><a href="#" class="filter__button">Most boosted</a></li>
@@ -28,7 +28,7 @@
     </button>
 
     <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
-      <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+      <menu class="filter__menu flex flex-column gap-half unpad margin-none">
         <% Current.user.buckets.order(:name).each do |bucket| %>
           <li><%= link_to bucket.name, bucket_bubbles_path(bucket), class: "filter__button" %></li>
         <% end %>
@@ -46,7 +46,7 @@
     </button>
 
     <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
-      <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+      <menu class="filter__menu flex flex-column gap-half unpad margin-none">
         <% Current.account.tags.order(:title).each do |tag| %>
           <li><%= link_to tag.title, bucket_bubbles_path(bucket, bubble_filter_params.merge(tag_id: tag.id)) %></li>
         <% end %>
@@ -69,7 +69,7 @@
     </button>
 
     <dialog class="filter__popup panel fill-white shadow" data-dialog-target="dialog">
-      <menu class="filter__menu flex flex-column gap-half unpad margin-none txt-medium">
+      <menu class="filter__menu flex flex-column gap-half unpad margin-none">
         <% Current.account.users.active.order(:name).each do |user| %>
           <li><%= link_to user.name, bucket_bubbles_path(bucket, bubble_filter_params.merge(assignee_id: user.id)) %></li>
         <% end %>
