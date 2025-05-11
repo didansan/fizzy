@@ -8,7 +8,6 @@ servers:
   web-replica:
     hosts:
       - cph-app-102
-      - cph-app-103
     proxy: true
 
 env:
@@ -46,7 +45,7 @@ accessories:
       - web-replica
 
   load-balancer:
-    host: test-lb
+    host: cph-app-103
     image: basecamp/kamal-proxy:lb
     options:
       publish:
