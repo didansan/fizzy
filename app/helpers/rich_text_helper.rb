@@ -44,12 +44,12 @@ module RichTextHelper
 
   private
     def link_unfurling_prompt
-      content_tag(:div, hidden: true, class: "flex gap justify-space-between align-center", data: { unfurl_link_target: "linkAccountsPrompt" }) do
-        concat content_tag(:p, "You can link your Basecamp account to get link previews!")
+      content_tag(:div, hidden: true, class: "unfurl-notice flex gap justify-space-between align-center", data: { unfurl_link_target: "linkAccountsPrompt" }) do
+        concat content_tag(:p, "Connect your account to get previews of Basecamp links?")
         concat(
-          content_tag(:div, class: "flex gap") do
-            concat button_tag("Link accounts", class: "btn", data: { action: "unfurl-link#setUpBasecampIntegration" })
-            concat button_tag("Remind me later", class: "btn", data: { action: "unfurl-link#closePrompt", unfurl_link_intent_param: "dismiss" })
+          content_tag(:div, class: "flex gap-half") do
+            concat button_tag("Yes, connect…", class: "btn btn--link", data: { action: "unfurl-link#setUpBasecampIntegration" })
+            concat button_tag("Not now", class: "btn fill-transparent", data: { action: "unfurl-link#closePrompt", unfurl_link_intent_param: "dismiss" })
           end
         )
       end

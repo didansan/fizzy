@@ -1,8 +1,11 @@
 <% @hide_footer_frames = true %>
 
-<div data-controller="popup-window">
-  <p>We will redirect you to Basecamp to login.</p>
-
-  <%= button_to "Link your Basecamp Account", basecamp_integration_path, method: :post, data: { turbo: false }, class: "btn" %>
-  <button class="btn" data-action="popup-window#close">Not now</button>
+<div data-controller="popup-window" class="panel shadow center margin-block-double">
+  <strong class="txt-large">Connect to Basecamp to auto-preview links?</strong>
+  <p>Do you want to allow Fizzy to automatically turn pasted Basecamp URLs in link previews? For example, a URL like <span class="txt-link">http://3.basecamp.com/1234/</span> becomes <span class="txt-link">Important message</span>.</p>
+  <p>In the next step you'll sign in to Basecamp and authorize the connection to Fizzy.</p>
+  <div class="flex justify-center align-center gap-half">
+    <%= button_to "Yes, continue…", basecamp_integration_path, method: :post, data: { turbo: false }, class: "btn btn--link" %>
+    <button class="btn" data-action="popup-window#close">Never mind</button>
+  </div>
 </div>
