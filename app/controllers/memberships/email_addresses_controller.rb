@@ -1,6 +1,4 @@
 class Memberships::EmailAddressesController < ApplicationController
-  require_untenanted_access
-
   before_action :set_membership
   rate_limit to: 5, within: 1.hour, only: :create
 

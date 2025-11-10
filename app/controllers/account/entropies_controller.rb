@@ -1,6 +1,6 @@
 class Account::EntropiesController < ApplicationController
   def update
-    Account.sole.entropy.update!(entropy_params)
+    Current.account.entropy.update!(entropy_params)
     redirect_to account_settings_path, notice: "Account updated"
   end
 
