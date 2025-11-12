@@ -19,7 +19,7 @@ class Account::JoinCodesController < ApplicationController
 
   private
     def set_join_code
-      @join_code = Account::JoinCode.sole
+      @join_code = Current.account.join_code
     end
 
     def join_code_params
