@@ -11,7 +11,8 @@ module AvatarsHelper
   end
 
   def avatar_tag(user, hidden_for_screen_reader: false, **options)
-    link_to user_path(user), class: class_names("avatar btn btn--circle", options.delete(:class)), data: { turbo_frame: "_top" },
+    link_to user_path(user), class: class_names("avatar btn btn--circle", options.delete(:class)),
+      data: { turbo_frame: "_top", creator_id: user.id },
       aria: { hidden: hidden_for_screen_reader, label: user.name },
       tabindex: hidden_for_screen_reader ? -1 : nil,
       **options do
@@ -31,6 +32,7 @@ module AvatarsHelper
 
   def avatar_preview_tag(user, hidden_for_screen_reader: false, **options)
     tag.span class: class_names("avatar", options.delete(:class)),
+      data: { creator_id: user.id },
       aria: { hidden: hidden_for_screen_reader, label: user.name },
       tabindex: hidden_for_screen_reader ? -1 : nil do
       avatar_image_tag(user, **options)
@@ -38,6 +40,9 @@ module AvatarsHelper
   end
 
   def avatar_image_tag(user, **options)
-    image_tag user_avatar_url(user, script_name: user.account.slug), aria: { hidden: "true" }, size: 48, title: user.name, **options
+    safe_join [
+      image_tag(user_avatar_url(user, script_name: user.account.slug), aria: { hidden: "true" }, size: 48, title: user.name, data: { only_visible_to_others: true }, **options),
+      image_tag(my_avatar_url(script_name: user.account.slug), aria: { hidden: "true" }, size: 48, title: user.name, data: { only_visible_to_you: true }, **options)
+    ]
   end
 end
