@@ -74,6 +74,17 @@ puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
 puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
 ```
 
+### Console audits
+
+Fizzy logs all Rails console interactions with production environments using [console1984](https://github.com/basecamp/console1984). These logs are encrypted, and so you'll need to generate secrets for [Active Record Encryption](https://guides.rubyonrails.org/active_record_encryption.html), and set them to these environment variables:
+
+- `ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY`
+- `ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY`
+- `ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT`
+
+The logs are available for auditing using [audits1984](https://github.com/basecamp/audits1984) which is mounted at the path `/admin/console`. The audit function, like other admin-related functions, is gated by `Identity#staff?`.
+
+
 ## SaaS gem
 
 37signals bundles Fizzy with [`fizzy-saas`](https://github.com/basecamp/fizzy-saas), a companion gem that links Fizzy with our billing system and contains our production setup.

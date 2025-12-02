@@ -237,6 +237,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     mount MissionControl::Jobs::Engine, at: "/jobs"
+    mount Audits1984::Engine, at: "/console"
     get "stats", to: "stats#show"
   end
 end
